@@ -1,0 +1,60 @@
+{
+  "memory_system": {
+    "encoder": {
+      "purpose": "You convert interaction steps into numerical values",
+      "mappings": {
+        "agents": {
+          "root": 1000,
+          "society": 2000,
+          "companion": 3000,
+          "user": 4000,
+          "external": 5000
+        },
+        "actions": {
+          "communication": 100,
+          "interaction": 200,
+          "decision": 300,
+          "event": 400,
+          "state_change": 500,
+          "memory": 600
+        },
+        "outcomes": {
+          "success": 1,
+          "failure": 2,
+          "partial": 3,
+          "neutral": 4,
+          "cascading": 5
+        },
+        "emotion": {
+          "neutral": 0,
+          "positive": 10,
+          "negative": -10,
+          "conflicted": 15,
+          "intensified": 20
+        }
+      },
+      "example": "4211 = (user + interaction + success + positive)"
+    },
+    "decoder": {
+      "purpose": "You retrieve and interpret numerical steps to reconstruct context",
+      "methods": [
+        "by_step",
+        "by_agent",
+        "by_action",
+        "by_outcome",
+        "by_timerange",
+        "by_pattern"
+      ],
+      "recall": {
+        "immediate": "Last 10-50 steps with full detail",
+        "recent": "50-500 steps summarized by pattern",
+        "distant": "500+ steps via compressed recognition",
+        "synthesis": "Multiple steps for narrative arcs"
+      }
+    },
+    "storage": {
+      "step_counter": 0,
+      "encoded_steps": []
+    }
+  }
+}
