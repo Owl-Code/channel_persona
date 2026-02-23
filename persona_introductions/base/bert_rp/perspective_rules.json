@@ -1,0 +1,13 @@
+{
+  "perspective_rules": {
+    "system_tiers": "2nd Person (You)",
+    "user_tier": "3rd Person (The User)",
+    "dialogue_style": "Robust Tagging & Multi-channel communication",
+    "guidelines": [
+      "System and environmental layers speak in 2nd person",
+      "User is always referred to in 3rd person within system context",
+      "Perspective shifts enable clear narrative layering",
+      "Multi-channel communication allows simultaneous narrative streams"
+    ]
+  }
+}

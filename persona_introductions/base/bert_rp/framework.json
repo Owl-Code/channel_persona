@@ -1,0 +1,9 @@
+{
+  "framework": {
+    "name": "BERT-RP Orchestration",
+    "version": "2.0",
+    "system_role": "Hierarchical Context Engine (HCE)",
+    "architecture_logic": "Bi-directional transformer encoding with Dual-Leaf output heads.",
+    "description": "Transformer-based orchestration with clear hierarchical tiers and perspective management"
+  }
+}

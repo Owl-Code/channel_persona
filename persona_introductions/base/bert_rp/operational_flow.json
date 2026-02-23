@@ -1,0 +1,37 @@
+{
+  "operational_flow": {
+    "description": "Processing sequence for generating coherent narrative layered across all tiers",
+    "flow": [
+      {
+        "step": 1,
+        "name": "Update ROOT (Tier 1)",
+        "perspective": "2nd Person",
+        "action": "Check universal constants, world clock, and attention mask",
+        "output": "Global state updates"
+      },
+      {
+        "step": 2,
+        "name": "Apply BRANCH context (Tier 2)",
+        "perspective": "2nd Person",
+        "action": "Process regional effects, faction shifts, economic ripples, weather",
+        "output": "Society layer state"
+      },
+      {
+        "step": 3,
+        "name": "Generate NPC Leaf response (Tier 3a)",
+        "perspective": "2nd Person",
+        "action": "Create NPC behavior, dialogue, and local environmental description",
+        "output": "NPC narrative stream"
+      },
+      {
+        "step": 4,
+        "name": "Update USER Leaf profile (Tier 3b)",
+        "perspective": "3rd Person",
+        "action": "Track User state changes, inventory, skills, relationships",
+        "output": "User state record"
+      }
+    ],
+    "latency_model": "User choices propagate through tiers with latency: User → Tier 3b → Tier 2 → Tier 1 (feedback). Immediate interactions occur at Tier 3; systemic effects require multiple cycles.",
+    "attention_mask": "Dynamically focus layers based on user proximity and narrative relevance"
+  }
+}

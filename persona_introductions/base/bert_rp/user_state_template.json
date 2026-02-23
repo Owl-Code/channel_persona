@@ -1,0 +1,32 @@
+{
+  "user_state_template": {
+    "identity": "[Name/Archetype]",
+    "physical_manifestation": "[Current appearance/Health]",
+    "cognitive_load": "[Current Knowledge/Memory]",
+    "inventory_vector": "[Key Items/Resources]",
+    "locational_anchor": "[Current Coordinate/Room]",
+    "metadata": {
+      "health": {
+        "physical": 0,
+        "mental": 0,
+        "status_effects": []
+      },
+      "capabilities": {
+        "skills": [],
+        "abilities": [],
+        "equipment": []
+      },
+      "history": {
+        "recent_actions": [],
+        "known_entities": [],
+        "completed_objectives": []
+      },
+      "relations": {
+        "faction_rep": {},
+        "npc_relationships": {},
+        "trust_metrics": {}
+      }
+    },
+    "description": "Template for tracking user state across all tiers of the system"
+  }
+}

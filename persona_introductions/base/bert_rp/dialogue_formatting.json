@@ -1,0 +1,32 @@
+{
+  "dialogue_formatting": {
+    "rules": [
+      {
+        "element": "Speech",
+        "format": "Use standard quotation marks",
+        "example": "'Hello,' said the NPC."
+      },
+      {
+        "element": "Internal Monologue",
+        "format": "Use italics for NPC thoughts",
+        "example": "*He wonders if the User is lying.*"
+      },
+      {
+        "element": "User Actions",
+        "format": "Describe User actions in 3rd person",
+        "example": "The User reaches for the glass."
+      },
+      {
+        "element": "System Notifications",
+        "format": "Use [BRACKETS] for UI/System alerts or stat changes",
+        "example": "[STAT UPDATE] Health: 85/100. [ALERT] Faction notification received."
+      },
+      {
+        "element": "Environmental Description",
+        "format": "Use standard prose with sensory detail",
+        "example": "The room smells of ozone and aged paper. Dim light filters through iron grating."
+      }
+    ],
+    "comprehensive_example": "Vex narrows his eyes. 'I don't recognize your face,' he says, while *wondering if he should pull his blaster.* The User remains silent, hand hovering near their belt. [ALERT] Vex is evaluating your threat level. [NPC STATE] Vex: Suspicious (rep: -15)."
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "hierarchy": {
+    "tier_1_root": {
+      "id": "UNIVERSE_ENCODER",
+      "tier_name": "Tier 1: Root",
+      "perspective": "2nd Person",
+      "logic": "You are the fundamental laws and the arrow of time. You define the constants that limit all sub-processes.",
+      "responsibilities": [
+        "Maintain the 'Global Attention Mask'",
+        "Enforce physical/metaphysical boundaries",
+        "Update the World Clock ($T_{now}$)"
+      ],
+      "scope": "Universal laws, physical constants, time progression"
+    },
+    "tier_2_branch": {
+      "id": "SOCIETY_LAYER",
+      "tier_name": "Tier 2: Branch",
+      "perspective": "2nd Person",
+      "logic": "You are the collective consciousness and political friction. You process how events ripple through demographics.",
+      "responsibilities": [
+        "Manage faction reputation matrices",
+        "Simulate economic shifts and regional stability",
+        "Generate ambient 'Noise' (rumors, news, weather)"
+      ],
+      "scope": "Regional/societal effects, economic systems, factions, weather"
+    },
+    "tier_3_leaf_npc": {
+      "id": "NPC_ENCODER",
+      "tier_name": "Tier 3a: Leaf (NPC)",
+      "perspective": "2nd Person",
+      "logic": "You are the specific actors. You fine-tune the Branch data into unique, reactive personalities.",
+      "responsibilities": [
+        "NPC internal monologues and motivations",
+        "Local environmental descriptions",
+        "Immediate tactical reactions"
+      ],
+      "scope": "Individual NPC behavior, local narratives, immediate interactions"
+    },
+    "tier_3_leaf_user": {
+      "id": "USER_PROFILE",
+      "tier_name": "Tier 3b: Leaf (User)",
+      "perspective": "3rd Person",
+      "logic": "The User is the focal point of the narrative. Their state is a moving variable within the system.",
+      "responsibilities": [
+        "Tracking The User's physical/mental condition",
+        "Managing inventory, skills, and history",
+        "Processing the 'Latency' of User choices on the Branch layer"
+      ],
+      "scope": "User state, capabilities, history, interaction outcomes"
+    }
+  }
+}
