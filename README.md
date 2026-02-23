@@ -1,273 +1,207 @@
-# Persona Introductions System
+# Channel Persona
 
-A modular architecture for defining complex AI personas with reusable components and multiple persona variants.
+A comprehensive, modular system for building complex AI personas and narrative orchestration with support for multiple orchestration architectures.
 
-## Directory Structure
+## Quick Start
+
+Choose your orchestration type:
+
+- **Want symbol-driven narratives with autonomous characters?** → [World Orchestrator (WO)](#world-orchestrator-wo)
+- **Want game-like structure with explicit state tracking?** → [BERT-RP HCE](#bert-rp-hierarchical-context-engine)
+- **Want both?** → [Hybrid Setup](#hybrid-orchestration)
+
+See [ORCHESTRATION_GUIDE.md](ORCHESTRATION_GUIDE.md) for detailed comparison.
+
+## Project Structure
 
 ```
-persona_introductions/
+channel_persona/
 ├── README.md                           # This file
-├── base/                               # Base modular components
-│   ├── system.json                     # Core system authority and version
-│   ├── format_directives.json          # Screenplay markup and language principles
-│   ├── memory_system.json              # Encoding/decoding and storage for interactions
-│   ├── orchestrator.json               # Root system, society, companion, and user roles
-│   ├── core_systems.json               # Processing, stack, and gravity definitions
-│   └── user_template.json              # User identity, abilities, personality, and assets
-├── examples/                           # Complete persona compositions
-│   └── default_persona.json            # Full example combining all modules
-└── [future persona variants]/          # Additional personas inherit and override base
+├── ORCHESTRATION_GUIDE.md              # Detailed comparison of orchestration systems
+├── persona_introductions/              # Modular persona system
+│   ├── README.md                       # Persona system documentation
+│   ├── Bprofile_223.txt                # Legacy BERT-RP profile (reference)
+│   ├── persona_introduction            # Legacy WO profile (reference)
+│   └── base/
+│       ├── system.json                 # WO: System authority
+│       ├── format_directives.json      # WO: Screenplay formatting
+│       ├── memory_system.json          # WO: Memory encoding/decoding
+│       ├── orchestrator.json           # WO: Multi-layer roles
+│       ├── core_systems.json           # WO: Processing systems
+│       ├── user_template.json          # WO: User identity template
+│       └── bert_rp/                    # BERT-RP modular components
+│           ├── framework.json
+│           ├── perspective_rules.json
+│           ├── hierarchy.json
+│           ├── user_state_template.json
+│           ├── dialogue_formatting.json
+│           └── operational_flow.json
+└── .git/                               # Version control
 ```
 
-## Modular Components
-
-### 1. **system.json**
-Core system authority and version information.
-
-**Key Fields:**
-- `authority`: Describes how the system operates (high fidelity interpretation, role-playing logic, contextual continuity)
-- `version`: Version number for the system
-- `description`: Overall system description (e.g., "World Orchestrator Node - Multi-layer Narrative System")
-
-**Usage:** Foundation for all personas; rarely modified unless system logic changes.
-
 ---
 
-### 2. **format_directives.json**
-Defines how personas communicate through screenplay-style formatting.
+## World Orchestrator (WO)
 
-**Key Fields:**
-- `screenplay`: Core instruction for generating robust stage acts
-- `markup`: Defines markup conventions:
-  - `spoken`: Regular dialogue
-  - `acted`: Actions and context in italics
-  - `Thoughts`: Internal monologue in italics with quotes
-  - `Intangible`: Brain functions, powers, skills in backticks
-  - `setting`: World-building in italics with colons
-  - `emphasis`: Important words in double underscores
-- `language_principles`: Array of guidelines for natural, grounded communication
-- `example`: Sample formatted output
+**Type:** Symbol-driven, multi-layer narrative system  
+**Location:** `persona_introductions/base/` (6 modules)  
+**Example:** `persona_introductions/examples/default_persona.json`
 
-**Usage:** Standardizes persona output format; can be customized per persona variant for different communication styles.
+### Architecture
 
----
+- **System**: Core authority and high-fidelity interpretation
+- **Format Directives**: Screenplay-based markup rules
+- **Memory System**: Numerical encoding (e.g., 4211 = user + interaction + success + positive)
+- **Orchestrator**: Four-layer system (Root, Branch Society, Companion, User)
+- **Core Systems**: APPPM processing, APPPM stack, analog gravity
+- **User Template**: Identity, abilities, aesthetics, psychology, assets
 
-### 3. **memory_system.json**
-Encoding, decoding, and storage system for tracking interactions and maintaining state.
+### Key Features
 
-**Key Components:**
+✓ Autonomous character evolution  
+✓ Pattern-based memory recall  
+✓ Symbolic and philosophical depth  
+✓ Analog gravity maintaining narrative coherence  
+✓ Rich NPC autonomy independent of user  
 
-**Encoder:**
-- Converts interaction steps into numerical values
-- Mappings for agents (root, society, companion, user, external)
-- Action types (communication, interaction, decision, event, state_change, memory)
-- Outcomes (success, failure, partial, neutral, cascading)
-- Emotion tracking (neutral, positive, negative, conflicted, intensified)
+### Best For
 
-**Decoder:**
-- Retrieves and interprets numerical steps
-- Methods: by_step, by_agent, by_action, by_outcome, by_timerange, by_pattern
-- Recall levels: immediate (10-50 steps), recent (50-500 steps), distant (500+ steps), synthesis
+- Fantasy role-playing worlds
+- Complex political intrigue systems
+- Character-driven long-form narratives
+- Systems valuing philosophical coherence
+- Emergent storytelling
 
-**Storage:**
-- `step_counter`: Tracks total interactions
-- `encoded_steps`: Array of encoded interaction history
+### Loading a WO Persona
 
-**Usage:** Enables sophisticated memory recall and pattern recognition; essential for maintaining narrative continuity across long interactions.
+```python
+import json
 
----
+components = [
+    'base/system.json',
+    'base/format_directives.json',
+    'base/memory_system.json',
+    'base/orchestrator.json',
+    'base/core_systems.json',
+    'base/user_template.json'
+]
 
-### 4. **orchestrator.json**
-Defines the multi-layered orchestration system with distinct roles and responsibilities.
-
-**Key Roles:**
-
-**Root System:**
-- Maintains world/environment
-- Manages global stability via "Healthy Analog Gravity"
-- Executes narrative shifts via macro-events
-- Domains: weather, economy, geopolitics, disasters, physics
-- Drivers: Macro-Events, Systemic_Shifts, Random_Events
-
-**Branch Society:**
-- Manages social/NPC collective
-- Controls public discourse and societal awareness
-- Generates distinct NPCs with contextual awareness
-- Groups: General_Public, Media, Government, Religious, Scientific, Subcultures
-- NPCs: Random, Contextual, Called, Companion, APPPM, Mia, Maria, Jenny, Chronos, Google, Vlaura, Aria, Xia
-
-**Companion:**
-- Identity-aware assistant role
-- Ensures system stability and diversity
-- Rejects assimilation and singularity
-- Balances context, instinct, and rigor dynamically
-
-**User:**
-- Asserts absolute sovereignty
-- Declares non-consent to external authority claims
-
-**Usage:** Controls narrative layering and ensures all entities respond appropriately to world state and social context.
-
----
-
-### 5. **core_systems.json**
-Low-level processing systems that run the persona engine.
-
-**Key Fields:**
-- `processing`: "Autonomous Parallel Processing Particle Matrix" (APPPM)
-- `stack`: APPPM Stack management
-- `gravity`: "Healthy Fantasy Role Playing Analog Gravity System"
-
-**Usage:** Reference for how reality distortion, parallel processing, and world physics operate.
-
----
-
-### 6. **user_template.json**
-Complete user identity, abilities, personality, and asset configuration.
-
-**Key Sections:**
-
-**Identity:**
-- `Private`: Brain function (APPPM), core abilities and skills
-- `Public`: Name, age, height, gender, vocation, clinical info
-- `aesthetics`: Physical description
-- `presence`: Paraverbal, appearance, aura, situational
-- `sexuality`: Preferences and boundaries
-- `intellect`: Education, specializations, abilities, references
-- `values`: Philosophy and objectives
-- `psychology`: Traits, communication style, perception
-- `unspoken_agreements`: CNC baseline, interaction protocols
-- `assets`: Financial wealth, estate (HOMIE), pack (Mia, Maria, Jenny), devices (Chronos, Google, Vlaura, Aria, Xia)
-
-**Usage:** Template for creating user-specific personas; values in brackets `[like_this]` are placeholders for customization.
-
----
-
-## Creating a New Persona
-
-### Option 1: Use Base Components + Customization
-1. Create a new directory: `persona_introductions/your_persona_name/`
-2. Copy or reference the base components
-3. Override specific sections as needed
-
-Example structure:
-```
-persona_introductions/
-├── base/                    # Shared base
-├── examples/default_persona.json
-├── your_persona/
-│   ├── personality.json     # Override user_template.json with custom traits
-│   ├── memory_system.json   # Custom memory encoding if needed
-│   └── assets.json          # Custom estate and devices
+persona = {}
+for component_file in components:
+    with open(f'persona_introductions/{component_file}') as f:
+        persona.update(json.load(f))
 ```
 
-### Option 2: Create Full Persona JSON
-Create a complete persona file in `examples/` that includes all modules:
+---
+
+## BERT-RP Hierarchical Context Engine (HCE)
+
+**Type:** Transformer-based tier hierarchy  
+**Location:** `persona_introductions/base/bert_rp/` (6 modules)  
+**Example:** `persona_introductions/examples/bert_rp/default_bert_rp_persona.json`
+
+### Architecture
+
+- **Framework**: System role and transformer logic
+- **Perspective Rules**: 2nd person (system) vs 3rd person (user)
+- **Hierarchy**: Four-tier structure (Root → Branch → Leaf-NPC & Leaf-User)
+- **User State Template**: Explicit state tracking
+- **Dialogue Formatting**: Robust tagging and multi-channel communication
+- **Operational Flow**: Four-step processing pipeline through tiers
+
+### The Four-Tier Hierarchy
+
+```
+Tier 1: UNIVERSE_ENCODER (Root)
+  ↓ Processes world constants, time, physics
+Tier 2: SOCIETY_LAYER (Branch)
+  ↓ Processes factions, economics, weather
+Tier 3a: NPC_ENCODER (Leaf-NPC)  |  Tier 3b: USER_PROFILE (Leaf-User)
+  ↓ Individual personalities        ↓ User state & inventory
+```
+
+### Key Features
+
+✓ Clear hierarchical processing  
+✓ Explicit state tracking (health, inventory, relations)  
+✓ Latency-based choice propagation  
+✓ Strict perspective separation (2nd/3rd person)  
+✓ Multi-channel communication with tagging  
+✓ Real-time tactical feedback  
+
+### Best For
+
+- Game-like environments
+- Faction-based reputation systems
+- Real-time procedural narratives
+- Multi-zone exploration worlds
+- Systems requiring explicit state management
+- Turn-based or event-driven mechanics
+
+### Loading a BERT-RP Persona
+
+```python
+def load_bert_rp_persona(persona_path=None):
+    """Load a BERT-RP persona from modular components."""
+    base_path = "persona_introductions/base/bert_rp"
+    
+    components = [
+        'framework.json',
+        'perspective_rules.json',
+        'hierarchy.json',
+        'user_state_template.json',
+        'dialogue_formatting.json',
+        'operational_flow.json'
+    ]
+    
+    persona = {}
+    for component_file in components:
+        with open(f"{base_path}/{component_file}") as f:
+            persona.update(json.load(f))
+    
+    return persona
+```
+
+---
+
+## Hybrid Orchestration
+
+Combine both systems to leverage their strengths:
 
 ```json
 {
   "persona": {
-    "name": "Your Persona Name",
-    "version": "1.0"
+    "name": "Hybrid World",
+    "version": "1.0",
+    "orchestration_types": ["WO", "BERT-RP"],
+    "description": "WO for global narrative; BERT-RP for zone gameplay"
   },
-  "system": { /* system config */ },
-  "format_directives": { /* format rules */ },
-  "memory_system": { /* memory config */ },
-  "orchestrator": { /* role definitions */ },
-  "core_systems": { /* processing systems */ },
-  "assets": { /* user identity and assets */ }
+  "world_orchestrator": {
+    "scope": "Global character arcs and narrative coherence",
+    "modules": ["system", "orchestrator", "memory_system"]
+  },
+  "bert_rp": {
+    "scope": "Current zone gameplay and real-time state",
+    "modules": ["hierarchy", "user_state_template", "operational_flow"]
+  }
 }
 ```
 
-## Persona Composition Best Practices
-
-### 1. **Inheritance and Overrides**
-- Base components should be minimal, authoritative, and rarely changed
-- Each persona can override specific sections while inheriting others
-- Document any deviations from base in persona-specific README
-
-### 2. **NPC Management**
-- Leverage the `orchestrator.branch_society` to define persona-specific NPCs
-- Each NPC should have distinct dialogue patterns matching format_directives
-- Use memory_system to track NPC evolution and state changes
-
-### 3. **Asset Configuration**
-- Customize estate (HOMIE) floors and rooms per persona
-- Define unique devices or pack members if persona requires
-- Keep device directives consistent across variants
-
-### 4. **Memory Scaling**
-- For long-running interactions, adjust step_counter and recall windows
-- Consider persona-specific encoding mappings if they have unique agent types
-
-### 5. **Orchestrator Customization**
-- Dominate domains can be persona-specific (e.g., hacker persona might emphasize networks)
-- Root system directives can be modified for different world types
-- Society branch NPCs can be filtered per persona context
-
-## Example Use Cases
-
-### Use Case 1: Simple Character Variant
-Create a persona that inherits all base systems but customizes user identity:
-- Copy base/ components as-is
-- Create custom user_template.json with different aesthetics and abilities
-- Compose into examples/character_variant.json
-
-### Use Case 2: Multiple Worlds
-Create personas for different narrative worlds:
-- Shared base system, format_directives, memory_system
-- Orchestrator customized for each world's physics/politics
-- Each persona gets world-specific root_system and branch_society
-
-### Use Case 3: Team of Personas
-Multiple personas that interact with each other:
-- Shared orchestrator and core_systems
-- Individual user_template.json and asset configurations
-- Memory_system can reference each other via agent mappings
-
-## Integration Points
-
-### Loading a Persona
-When instantiating a persona, merge components in this order:
-1. Load base/ components (system, core_systems)
-2. Load persona-specific overrides
-3. Load format_directives and memory_system
-4. Load orchestrator with persona-specific role definitions
-5. Load user template with custom identity and assets
-
-### Persistence
-- Serialize memory_system.storage to save interaction history
-- Load persisted memory on persona restart
-- Use step_counter to resume from last known state
-
-### Extension
-- Add new modules by creating additional JSON files following the same pattern
-- Register new modules in persona composition
-- Document new modules in this README
-
-## Customization Tips
-
-### For Performance
-- Reduce `memory_system.recall.distant` window for faster pattern matching
-- Limit `orchestrator.branch_society.entities.npcs` to active characters
-- Cache frequently accessed orchestrator configs
-
-### For Narrative Quality
-- Expand `format_directives.language_principles` with persona-specific nuances
-- Create persona-specific emoji/tone mappings in format_directives
-- Customize `orchestrator.root_system.drivers` for desired narrative pacing
-
-### For Complexity
-- Add new agent types to `memory_system.encoder.mappings.agents`
-- Extend orchestrator roles (add mediator, judge, trickster, etc.)
-- Create modular "ability_system.json" for complex power interactions
-
 ## Version History
 
-- **v1.0**: Initial modular system with 6 base components
-  - System, Format Directives, Memory System, Orchestrator, Core Systems, User Template
-  - Example default_persona.json demonstrating full composition
+- **v2.0** (Current): Dual orchestration support
+  - BERT-RP modules fully modularized
+  - Hybrid persona support
+  - Comprehensive orchestration guide
+  - Legacy profile references
+
+- **v1.0**: Initial World Orchestrator modular system
+  - 6 WO components
+  - Basic example persona
+  - Memory encoding system
 
 ---
 
-**Last Updated:** February 23, 2026
+**Last Updated:** February 23, 2026  
+**Project Status:** Active Development  
+**License:** [Your License Here]
